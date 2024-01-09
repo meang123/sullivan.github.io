@@ -1,8 +1,8 @@
 ---
 layout: single
-title:  "서울 상권 데이터 분석"
-categories: EDA,data science,data
-tag : [EDA,data science]
+title:  "LLM for Recommend system project"
+categories: LLM,Recommend system,open ai,llama2,langchain,CAMEL Agent
+tag : [LLM,Recommend system,open ai,llama2,langchain,CAMEL Agent]
 toc: true
 author_profile: false
 sidebar:

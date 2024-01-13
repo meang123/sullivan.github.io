@@ -62,8 +62,8 @@ langchain을 경험해보면서 얻은 정보를 정리 해보려고 합니다. 
 # Transformer model 정리 
 
 
+<a href="{{site.url}}/pdfs/transformers model.pdf">Transformers model PDF</a>
 
- [transformers model.pdf](..\..\..\Users\maeng\OneDrive\바탕 화면\transformers model.pdf) 
 
 
 
@@ -71,19 +71,20 @@ langchain을 경험해보면서 얻은 정보를 정리 해보려고 합니다. 
 
 
 
- [prompt templates.pdf](..\..\..\Users\maeng\OneDrive\바탕 화면\prompt templates.pdf) 
+<a href="{{site.url}}/pdfs/prompt templates.pdf">prompt PDF</a>
+
 
 # conversation memory for llm 
 
 
 
- [Conversational memory for LLM.pdf](..\..\..\Users\maeng\OneDrive\바탕 화면\Conversational memory for LLM.pdf) 
+<a href="{{site.url}}/pdfs/Conversational memory for LLM.pdf">conversational memory PDF</a>
 
 
 
 # retrival augemented generation(RAG)
 
- [retrival.pdf](..\..\..\Users\maeng\OneDrive\바탕 화면\retrival.pdf) 
+<a href="{{site.url}}/pdfs/retrival.pdf">retrival PDF</a>
 
 
 
@@ -91,7 +92,7 @@ langchain을 경험해보면서 얻은 정보를 정리 해보려고 합니다. 
 
 
 
- [chain.pdf](..\..\..\Users\maeng\OneDrive\바탕 화면\chain.pdf) 
+<a href="{{site.url}}/pdfs/chain.pdf">chain PDF</a>
 
 
 
@@ -99,4 +100,4 @@ langchain을 경험해보면서 얻은 정보를 정리 해보려고 합니다. 
 
 
 
- [agent.pdf](..\..\..\Users\maeng\OneDrive\바탕 화면\agent.pdf) 
+<a href="{{site.url}}/pdfs/agent.pdf">Agent PDF</a>

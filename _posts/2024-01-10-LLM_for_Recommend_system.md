@@ -13,7 +13,7 @@ typora-root-url: ../
 
 
 
-# 
+
 
 # 소개 
 
@@ -34,16 +34,14 @@ typora-root-url: ../
 알고리즘을 구성할때 환경은 colab환경에서 실행 하였다. 그리고 aws서비스를 위해 도커를 활용했다 이 부분은 및에 성찰 부분에 추가로 언급 하겠다 
 
 
-
-<img src="/images/2024-01-10-LLM_for_Recommend_system/image-20240110043128228.png" alt="image-20240110043128228" style="zoom:50%;" />
-
+![service arichtecture image]({{site.url}}/images/2024-01-10-LLM_for_Recommend_system/image-20240110043128228.png)
 
 
 
 
 
 
-**프로젝트 팀원에 대한 성찰 ** : 우선 팀원간에 팀워크는 상당히 부정적이었다.  백엔트 프론트와 ai파트가 따로 가는 느낌이었다. 즉 소통이 부족했던것 같다. 분명 회의는 주기적으로 하였는데도 서로 소통이 안 되었다. 예로 나는 중간 발표때 분명 언급하고 여러번 같은 내용으로 발표를 했었는데 프론트 백엔트 팀은 이 내용을 몰랐다. 그래서 결국 마지막에는 내가 구현했던 기능을 빼는 상황까지 갔었다. (결국 그럼에도 완성을 못했다) 그리고 ai파트는 2명이었지만 사실상 나 혼자 다 했다. 나머지 한명은 정말 아무것도 기여한게 없었다. 혼자서 llm을 사용한 추천시스템 알고리즘을 만들고 + 벡엔드 파트에서 만든 데이터 베이스 관계도 보고 연결 + 프론트엔드와의 연결 + aws서비스 배포를 위해 노력을했어야 했다. 
+**프로젝트 팀원에 대한 성찰** : 우선 팀원간에 팀워크는 상당히 부정적이었다.  백엔트 프론트와 ai파트가 따로 가는 느낌이었다. 즉 소통이 부족했던것 같다. 분명 회의는 주기적으로 하였는데도 서로 소통이 안 되었다. 예로 나는 중간 발표때 분명 언급하고 여러번 같은 내용으로 발표를 했었는데 프론트 백엔트 팀은 이 내용을 몰랐다. 그래서 결국 마지막에는 내가 구현했던 기능을 빼는 상황까지 갔었다. (결국 그럼에도 완성을 못했다) 그리고 ai파트는 2명이었지만 사실상 나 혼자 다 했다. 나머지 한명은 정말 아무것도 기여한게 없었다. 혼자서 llm을 사용한 추천시스템 알고리즘을 만들고 + 벡엔드 파트에서 만든 데이터 베이스 관계도 보고 연결 + 프론트엔드와의 연결 + aws서비스 배포를 위해 노력을했어야 했다. 
 
 
 
@@ -155,9 +153,9 @@ typora-root-url: ../
 
 ### 멘티 정보
 
-###  
 
-**James **
+
+**James**
 
 안녕하세요, 금융 멘토링 프로그램에 참여하게 된 저는 항상 금융 세계에 대한 탐구와 야망을 품은 열정적인 개인입니다. 금융의 복잡성에 도전하고자 하는 강한 욕망과 함께, 미래를 위해 지속적으로 투자하고 싶어하는 목표를 갖고 있습니다.저는 리스크 관리와 금융 안전성을 중시하며, 이를 바탕으로 효율적이고 안정적인 투자 전략을 개발하고자 노력하고 있습니다. 또한, 다양한 금융 상품과 시장 동향에 대한 지식을 확장하여 최신 동향을 반영한 결정을 내릴 수 있도록 노력하고 있습니다.멘토와의 소통을 통해 나만의 투자 철학을 더욱 세련되게 발전시키고, 금융적인 안목을 높여 나가고자 합니다. 멘토의 지혜와 지도 아래에서 더 나은 금융적 안정성을 달성하기 위해 열심히 노력할 것을 약속드립니다. 감사합니다.
 
@@ -231,7 +229,17 @@ typora-root-url: ../
 
 다음 3개의 pdf파일은 좋은 멘토 멘티에 관한 파일 내용이다 
 
- [file3_1.pdf](..\..\..\Users\maeng\OneDrive\바탕 화면\drive-download-20240111T150517Z-001\file3_1.pdf)  [file1_1.pdf](..\..\..\Users\maeng\OneDrive\바탕 화면\drive-download-20240111T150517Z-001\file1_1.pdf)  [file2_1.pdf](..\..\..\Users\maeng\OneDrive\바탕 화면\drive-download-20240111T150517Z-001\file2_1.pdf) 
+<a href="{{site.url}}/pdfs/file1_1.pdf">file1 PDF</a>
+
+
+<a href="{{site.url}}/pdfs/file2_1.pdf">file2 PDF</a>
+
+
+<a href="{{site.url}}/pdfs/file3_1.pdf">file3 PDF</a>
+
+
+
+
 
 
 
@@ -260,13 +268,15 @@ typora-root-url: ../
 
 아래는 소개란만 가지고 추출한 특성이다 
 
-<img src="/images/2024-01-10-LLM_for_Recommend_system/image-20240112015548505.png" alt="image-20240112015548505" style="zoom:50%;" />
+
+![extract info image]({{site.url}}/images/2024-01-10-LLM_for_Recommend_system/image-20240112015548505.png)
 
 
 
 다음은 CAMEL Agent를 통해 강화된 정보이다 
 
-<img src="/images/2024-01-10-LLM_for_Recommend_system/image-20240112015613262.png" alt="image-20240112015613262" style="zoom:50%;" />
+![camel agent image]({{site.url}}/images/2024-01-10-LLM_for_Recommend_system/image-20240112015613262.png)
+
 
 [위에 사진처럼 소개란보다 유저의 피드백을 통해 강화된 풍부한 정보를 기반으로 가질수 있다면 해당 유저에 맞는 추천을 할수있을것으로 생각 했다.]
 
@@ -274,11 +284,12 @@ typora-root-url: ../
 
 다음은 위에서 강화한 특성 가지고 다시 추천을 하였을때의 결과이다 
 
-<img src="/images/2024-01-10-LLM_for_Recommend_system/image-20240112015754195.png" alt="image-20240112015754195" style="zoom:50%;" />
+![before image]({{site.url}}/images/2024-01-10-LLM_for_Recommend_system/image-20240112015754195.png)
 
 
 
-<img src="/images/2024-01-10-LLM_for_Recommend_system/image-20240112015810324.png" alt="image-20240112015810324" style="zoom:50%;" />
+
+![after image]({{site.url}}/images/2024-01-10-LLM_for_Recommend_system/image-20240112015810324.png)
 
 
 

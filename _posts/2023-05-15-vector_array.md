@@ -10,33 +10,27 @@ sidebar:
 search: true
 ---
 
-<br>
-
 
 
 이번 시간에는 vector에 대한 기본적인 내용을 정리 할것이다. 익숙해지는거에는 역시 많이 사용해봐야 할것 같다. 이 시리즈의 저작권은 introduction에 소개 되어있다.  
 
-<br>
 
 
 
-_______________________
 
-
-### vector 
-
-<br>
-
+### vector
 
 
 
 https://en.cppreference.com/w/cpp/container/vector
 
 
+
 **사용이유**  
 
 1. 동적 할당 해제 자동으로 해준다   
 2. 지원하는 기능이 많다  
+
 
 
 **배열의 특성을 모두 가진다**
@@ -49,16 +43,20 @@ https://en.cppreference.com/w/cpp/container/vector
 
 벡터는 기본만 있어도 사이즈를 가진다 64bit에서는 8byte의 포인터 변수가 3개 있기 때문이다 
 
-1.	첫번째 요소 가리키는 포인터
-2.	size포인터 
-3.	capacity포인터 
+
+
+1. 첫번째 요소 가리키는 포인터
+
+2. size포인터 
+
+3. capacity포인터 
+
+   
 
 
 하지만 vector는 heap, array는 stack영역이다 보니까(compile 시간에 결정) array가 더 빠르다 어느정도 큰 메모리가 아니라면 array 사용하는게 좋다.  
 
 
-
-<br>
 
 
 
@@ -66,20 +64,24 @@ https://en.cppreference.com/w/cpp/container/vector
 
 ### push_back 대신 emplace_back을 사용해야 하는 이유 
 
-<br>
+
 
 
 
 push_back,emplace_back 모두 인자에 L value : copy, R value : move된다. 하지만 object가 왔을때 임시로 object만들어지고 move를 하게 되는데 c++17의 emplace_back부터는 move없이 바로 object 생성을 할수가 있다.   
 
+
+
 Cat& cat =cats.emplace_back("kitty",2)  이렇게 하는게 가장 좋다 쓸데없는 move없어진다.  
 
 
-<br>
+
 
 
 
 ----------------------
+
+
 
 ### 메모리를 충분히 확보 해야 하는 이유 
 
@@ -88,43 +90,51 @@ Cat& cat =cats.emplace_back("kitty",2)  이렇게 하는게 가장 좋다 쓸데
 
 
 capacity는 벡터가 확보한 메모리 크기이다 그래서 reserve를 통해 메모리 용량을 조절할수있다 이렇게 하는 이유는 heap은 듬성듬성이라서 메모리를 추가 할때 추가하는 공간이 이미 쓰일수도 있다. 그래서 vector는 이런 경우 copy하거나 move를 한다 ->비효율 그래서 미리 충분한 용량을 확보하는게 좋다.  
-<br>
 
- 
+
+
 
 또한 rule of five,three에 따라 직접 move constructor, copy constructor을 구현한 클래스와 vector를 사용할때 O(1)의 성능이 O(n)으로 나올수가 있다. 앞에 문제처럼 heap공간을 미리 쓰고 있는 공간일때 noexcept를 move constrouctor에 사용하지 않으면 move도 일어나지 않고 copy가 일어나게 된다 그래서 move constructor 앞에 noexcept 키워드를 사용하자. 물론 reserve를 통해 미리 충분한 공간을 확보하면 상황은 발생하지 않는다. 
+
+
 
 ----------------------
 
 ### vector 반복문 표현 대표적인 3가지 
 
 
+
 **반복문 유형**   
+
+
 
 > 1. index base
   2. iterator base
+  3. 백터의 itreators 반복자
 
-  > 백터의 itreators 반복자
+
+
+
 
     v.begin() 벡터 시작점의 주소값 반환
     v.end()   벡터 끝부분+1의 주소값 반환 (주의점 : 배열 벗어남)
     v.rbegin() 벡터의 끝 지점을 시작점으로 반환
     v.rend()   벡터의 시작+1 지점을 끝 부분으로 반환
-
+    
     정리 : 벡터 시작 부분 주소값 begin     벡터 끝부분 rbegin
         벡터 시작+1 부분 rend()         벡터 끝 부분+1 end()
 
 
 	3. range base
 
-<br>
+
 
 
 
 
 벡터 사이즈가 변경 되는 경우라면 인덱스 기반의 for loop 사용해라 - 앞에 말한 상황(heap을 누가 미리 쓰고 있는 경우)이 발생하면 iterator는 잘못된 주소를 가리키게 되어서 문제가 된다 range의 경우도 비슷한 문제 때문에 문제가 발생하게 된다 하지만 이 역시도 충분한 공간이 마련되어있다면 문제 없이 작동한다.  
 
-<br>
+
 
 
 
@@ -158,7 +168,11 @@ capacity는 벡터가 확보한 메모리 크기이다 그래서 reserve를 통�
 
 ----------------------
 
+
+
 ### remove,erase
+
+
 
 **erase**
 
@@ -169,11 +183,10 @@ https://en.cppreference.com/w/cpp/container/vector/erase
 
 https://en.cppreference.com/w/cpp/algorithm/remove
 
-<br>
-
 
 
 여러개의 요소를 지워야 할때 erase를 사용하면 O(n)작업이 여러번 발생하게 된다. 하지만 erase와 remove를 같이 사용하면 O(n)작업이 여러번 발생하는 문제 해결 할수가 있다.    
+
 
 
 **remove(begin,end,tartget)**  
@@ -189,11 +202,13 @@ remove의 작동 원리는 two pointer와 비슷하다
 첫 번째 포인터 위치가 반환 (end()도 마지막 보다 한칸 더 라는거 보면 )이 위치를 erase와 같이 사용하면 
 erase(arr.begin(),remove return) 결국에는 [1 1]만 남게 됨 -> 투포인터와 비슷한 원리로 remove가 이루어지고 있다    
 
-<br>
+
 
 
 
 **remove_if()를 사용하면 target자리에 함수가 올수있다 (람다 사용가능 )**
+
+
 
 
 ```c++
@@ -296,12 +311,14 @@ int main()
 ----------------------
 
 
+
 ### 관련 알고리즘 
 
 **sort**  
 sort가 지원하는 기본 성능은 O(n logn)이다.  
+
   > stable sort 기준되로 정렬하돼 그외에 것은 순서대로 한다 같은값애 대해서 순서를 바꾸지 않는다 stable sort를 따로 지원한다 
-  
+
   이외에도   
 
   >partial sort (부분 정렬)도 지원한다 말그대로 부분만 정렬을 한다 이런게 나온 이유는 sort의 time complexity가 O(n logn)이라서 조금이라도 줄이기 위함이다. std::partial_sort(begin,begin+3,end)
@@ -356,8 +373,6 @@ int main()
 }
 ```
 
-<br>
-
 
 
 **find**
@@ -385,7 +400,7 @@ int main()
 	
 ```
 
-<br>
+
 
 
 
@@ -393,7 +408,7 @@ int main()
 
 사실 c++ 20부터 range를 지원하는데 range에서도 같은 기능을 제공한다 뿐만아니라 find,count등등 다양하게 지원하는게 많다 이건 따로 포스팅해서 정리 할 예정이다.  
 
-<br>
+
 
 
 
@@ -436,7 +451,7 @@ int main()
 
 ```
 
-<br>
+
 
 
 
@@ -465,14 +480,12 @@ int main()
 
 ```
 
-<br>
+
 
 
 
 ----------------------
 ### 2차원 배열 
-
-<br>
 
 
 
@@ -480,11 +493,10 @@ int main()
 
 여기서는 간단한 행렬만 보여주고 마무리 하겠다   
 
-
 2차원을 1d로 표현하는게 더 효율적인데 이걸 구현 할수있다 -- 코드 참고 
 중요한건 for loop사용할때 cahce line 방향으로 해야 한다 -> row col 순으로 이중 for문 사용해야 chach line방향과 맞다. 
 
-<br>
+
 
 
 
@@ -513,7 +525,7 @@ public:
 };
 ```
 
-<br>
+
 
 
 
@@ -522,7 +534,7 @@ public:
 ----------------------
 ### span 
 
-<br>
+
 
 
 
@@ -536,9 +548,10 @@ c++ 20부터 추가가 된 기능이다 이걸 사용하려면 앞서 말한 ran
 
 https://en.cppreference.com/w/cpp/container/span   
 
-
 span은 연속된 공간의 시작 주소와 사이즈만 전달 한다  
 이러면 vector뿐아니라 array등이 와도 처리를 할수가 있게 된다 
+
+
 
 **주의점**  
 span설정 한뒤 원본을 바꾸면 다른곳을 가리킨다  
@@ -597,9 +610,6 @@ int main()
 	print_span(fixed_sp); 
 }
 ```
-
-
-<br>
 
 
 

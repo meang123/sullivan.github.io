@@ -15,16 +15,16 @@ search: true
 
 배열과 장단점이 바뀐 자료구조이다   
 
-<br>
+
 
 
 1. 데이터 삽입/삭제 -> O(1)
-  + 삽입 할때는 새로운 노드의 next를 이전 노드의 next값으로 설정한 후 이전 노드의 next를 갱신한다 
+     + 삽입 할때는 새로운 노드의 next를 이전 노드의 next값으로 설정한 후 이전 노드의 next를 갱신한다 
 
 
 2. 탐색 -> O(N)
 
-<br>
+
 
 
 
@@ -253,10 +253,44 @@ int main()
 <br>
 
 
+
+### Dobuly linked list 
+
+
+
+양반향 연결리스트 prev를 추가로 고려 해야한다 
+
+
+
+----
+
+### iterator 
+
+연결리스트에서 해당 지점에서 여러번 탐색을 해야 하는 경우 iterator 사용하면 시간 복잡도를 O(N)으로 줄일수있다. 예를 들어 일반 연결리스트에서 비워질때까지 tail부터 삭제를 한다고 하자. 이 상황에서 마지막 tail까지 탐색하고 삭제를 진행해야 하기  때문에 연결리스트가 비워질때까지 O(N) O(N)...이 실행이 된다. 이 상황을 iterator를 사용하면 처음 tail 탐색하는 시간 O(N)으로 해결할수있다. tail삭제 하고 이전 노드를 iterator로 잡으면 배열에서 k th 지정해서 지우는 효과처럼 tail까지 탐색하지 않고 바로 iterator로 가서 삭제 진행할수가 있다.
+
+
+
+----
+
+### 원형 연결리스트 
+
+
+
+원형 구조를 띠는 연결리스트이다. 보통 head하나만 사용한다. 
+
+
+
+---
+
+
+
+
+
+
 ### remove linked list element leetcode 
 
 요소를 지우는 간단한 문제이다 하지만 삭제할 대상이 head인 상황이면 pre node가 필요하기 때문에 dummy node개념을 도입해서 문제 해결 한다 코드는 다음과 같다 
-  
+
 
 Input: head = [1,2,6,3,4,5,6], val = 6  
 Output: [1,2,3,4,5]  
@@ -639,12 +673,12 @@ public:
     }
 };
 ```
-  
+
 
 
 뜨는 에러   
 
-  
+
 Runtime Error   
 Line 145: Char 24: runtime error: member access within null pointer of type 'ListNode' (solution.cpp)  
 SUMMARY: UndefinedBehaviorSanitizer: undefined-behavior prog_joined.cpp:154:24    

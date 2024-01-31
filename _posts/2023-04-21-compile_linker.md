@@ -11,6 +11,7 @@ search: true
 ---
 
 
+
 !!!이 포스팅의 저작권은 c++ introduce에 설명이 되어 있음을 알립니다!!! 
 
 
@@ -18,8 +19,8 @@ search: true
 ### preprocessor, compiler, linker 큰 그림  
 
 
-**preprocessor**  
 
+**preprocessor**  
 
 미리 선언된 매크로 관한 내용  
 __func__  
@@ -35,6 +36,12 @@ __DATE__ ,__TIME__ 같은 경우는 컴파일 되었을때 시간이라서 언�
 그런데 다른 idle 에서는 #ifndef #ifdef 등을 통해 해야한다  
 
 compiler가 cpp파일을 obj파일로 만들고 linker가 lib와 함께 실행 파일 만드는 구조이다. 
+
+
+
+---
+
+
 
 
 ### static library
@@ -58,12 +65,23 @@ cf : visual studio환경에서 솔루션 안에 여러개 파일 만든 상황 �
 
 -fPIC option을 주어서 so파일을 만든다 이때 static lib처럼 바로 실행하면 안될것이다(shared lib를 찾을수 없어서 발생하는 문제)   
 
-해결 방법   
+
+
+**해결 방법**
+
+   
+
 1. LD_LIBRARY_PATH에다가 shared library 갖고 있는 디렉토리 정보 넣어주면 됨 
-https://change-words.tistory.com/entry/linux-LDLIBRARYPATH   
+  https://change-words.tistory.com/entry/linux-LDLIBRARYPATH   
+
+  
 
 2. 현재 디렉토리에 shared file과 main 파일이 있고 실행 파일을 만들고 싶다면 
-g++ main.o -L. -l(shared_file_name) -Wl, -rpath=.   
+  g++ main.o -L. -l(shared_file_name) -Wl, -rpath=.   
+
+
+
+
 
 
 ### contexpr 
@@ -71,8 +89,9 @@ g++ main.o -L. -l(shared_file_name) -Wl, -rpath=.
 C++ 17부터 도입된 문법 이다. 
 compile 시간에 계산되는 값을 결정해준다. 
 
-
 피보 나치 함수 보면 런타임으로 만들어주면 O(n)으로 만들수있다 하지만 예제를 위해 recursive version으로 만들면 재귀 함수로 불려지고 하는 과정이 포함되지만 constexpr사용하면 컴파일 시간에 계산된 값을 직접 d에 할당 한다. 하지만 compile시간이 넘어가는건 아무래도 소용이 없는것 같다. 
+
+
 
 ```c++
 constexpr int fib(int n)

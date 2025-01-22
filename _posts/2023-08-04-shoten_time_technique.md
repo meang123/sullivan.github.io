@@ -12,18 +12,124 @@ search: true
 
 
 
-### intro 
-
-코드 트리 알고리즘 기본 과정 중에서 shoten time technique에 해당하는 내용입니다
-
-<br>
-
 
 
 ### prefix sum (구간합)
 
 구간합을 만드는데 시간 : O(N)이다  
 하지만 만든 이후 [a,b]구간의 합을 구할수가 있다 **S_(b) - S_(a-1)**으로 [a,b]구간의 합을 구할수가 있다 이때 S_0인 경우를 고려 하여야 하기때문에 초반에 0으로 설정 하여야 한다 - 우선 순위 큐 파트 부분 문제에서도 사용한 적이 있는데 실제로 다양하게 활용이 되고 있다     
+
+
+
+
+
+## Binary Indexed Tree(BIT)
+
+데이터 업데이트가 가능한 상황에서 구간합 하는 상황이다 
+
+2진법 인덱스 구조를 활용해서 구간합 문제를 해결한다 
+
+0이 아닌 마지막 비트를 찾아야 한다 ->  **i  & -i**를 계산 하면 된다 
+
+
+
+![img](https://blog.kakaocdn.net/dn/uT3JL/btrRAgyfTs3/TNQ05paSxQj4NvL2XGeLWk/img.png)
+
+
+
+특정 구간의 부분합을 구하고 싶으면 최하위 비트를 빼면서 찾을수있다 예를 들어 13번째 까지의 부분합을 구한다고 하면 13의 최하위 비트는 1이니까 12가 나오고 12의 최하위 비트는 4니까 빼면 8이 나오고 8의 최하위 비트는 8이니까 빼면 0이 된다 따라서 13+12+8을 하면 1~13까지의 부분합을 구할수가 있다.  이런식의 자료 구조라서 데이터가 바뀌어도 전체를 다시 계산하지 않아도 된다 왜냐하면 i번째를 포함하는 노드만 업데이트 하면 된다 
+
+
+
+index는 0부터 표기 되는데 bit는 1부터 표기 됨 예를 들어 index 4는 bit 5에 표기가 된다 
+
+```c++
+struct BIT{
+    vector<int> tree;
+    
+    void init(int n)
+    {
+        tree.resize(n+1);
+    }
+    
+    // 요소 하나 값 추가 하는 연산 i번째 배열값을 x만큼 증가 시키는 작업
+    void add(int pos,int x)
+    {
+        pos++; //binary index 변환
+        while(pos<tree.size())
+        {
+            tree[pos]+=x; //업데이트 된 값 반영
+            pos &= pos-1; //최하위 비트 계산 
+        }
+    }
+    int sum(int pos)
+    {
+        int res = 0;
+        pos++;
+        while(pos>0)
+        {
+            res+=tree[pos];
+            pos-=pos&-pos;
+        }
+        return res;
+    }
+    
+    int sumRange(int left,int right)
+    {
+        //구간합 빼는 작업 
+        int res = sum(right);
+        if(left>0)
+        {
+            res-=sum(left-1);
+        }
+        return res;
+    }
+    
+};
+```
+
+
+
+
+
+**BIT Range update** 
+
+BIT 2개를 사용하여 해결 할수있다 
+
+[youtube/algorithm_datastructure/range_query/binary_indexed_tree_range_add_and_sum.h at master · bluedawnstar/youtube (github.com)](https://github.com/bluedawnstar/youtube/blob/master/algorithm_datastructure/range_query/binary_indexed_tree_range_add_and_sum.h)
+
+```c++
+struct BinaryIndexedTreeMultAdd {
+    BinaryIndexedTree mulBIT;
+    BinaryIndexedTree addBIT;
+
+    explicit BinaryIndexedTreeMultAdd(int n) : mulBIT(n), addBIT(n) {
+    }
+
+    void add(int x, int d) {
+        mulBIT.add(x, d);
+        addBIT.add(x, d * (1 - x));
+    }
+
+    // O(logn)
+    void addRange(int left, int right, int d) {
+        add(left, d);
+        add(right + 1, -d);
+    }
+
+    // sum[0, x], O(logn)
+    int sum(int x) const {
+        return addBIT.sum(x) + mulBIT.sum(x) * x;
+    }
+
+    // sum[left, right], O(logn)
+    int sumRange(int left, int right) const {
+        return sum(right) - sum(left - 1);
+    }
+};
+```
+
+
 
 
 
@@ -168,7 +274,6 @@ int main()
 
 
 <br>
-
 
 이 문제같은 경우 요소값이 모두 양수이기 때문에 sliding window로 해도 문제가 풀리긴 하지만 이 문제에서는 시간 제한이 있기 때문에 sliding window말고 다르게 풀어야 한다 구간합을 이용해서 문제를 해결해야 하는데 
 내가 푼 방식을 설명하면 다음과 같다. 누적값과 unordered_map을 활용할것이다 

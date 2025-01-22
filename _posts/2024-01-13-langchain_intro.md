@@ -66,6 +66,42 @@ langchain을 경험해보면서 얻은 정보를 정리 해보려고 합니다. 
 
 
 
+#### Self attention
+
+Query @key transpose **[내적은 얼마나 비슷한가 유사성을 나타내기 때문에 결국 Q와 K들의 유사성을 확인하는 작업인것이다] :**    
+
+ 각 chunk에 대한 score 값 그대로 사용할수없으니 row방향으로 softmax적용한다 그리고 나서 Value matrix곱한다 
+
+예를 들어 I love you all의 chunk가 있을때 Q@key T의 score에서 I끼리는 0.9정도이고 I query와 you key값의 softmax값이 0.1의 상관관계가 나왔다고 하면 softmax(Q@key T) @V를 해줌으로써 
+
+I와 you에 대한 상관관계가 적용된 새로운 I 벡터를 형성하게 되는 효과를 가진다 
+
+
+
+각 쿼리에 대한 키 정보의 가중치 합이다 즉 쿼리와 키와의 관련 정보를 얻고 키에 대한 value를 weithed sum한것이 attention에 대한 결과 이다 
+
+각각의 쿼리에 대해 키와 내적 구한다 : self attention => 동음이의어 , 순서 맥락을 구분 할수있다 
+
+
+
+
+
+
+
+
+
+#### Multi head attention
+
+
+
+CNN에서 커널 여러개 만들어서 서로 다른 피쳐 구하는 필터맵 구한것처럼 self attetion을 여러개 만들어서 각기 다른 가중치 값을 가진 attention을 concate한것이다 
+
+
+
+
+
+
+
 
 # prompt 
 

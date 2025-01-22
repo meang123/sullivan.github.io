@@ -34,6 +34,8 @@ typora-root-url: ../
 알고리즘을 구성할때 환경은 colab환경에서 실행 하였다. 그리고 aws서비스를 위해 도커를 활용했다 이 부분은 및에 성찰 부분에 추가로 언급 하겠다 
 
 
+
+
 ![service arichtecture image]({{site.url}}/images/2024-01-10-LLM_for_Recommend_system/image-20240110043128228.png)
 
 

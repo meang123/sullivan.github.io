@@ -250,8 +250,6 @@ int main()
 }
 ```
 
-<br>
-
 
 
 ### Dobuly linked list 
@@ -495,7 +493,6 @@ public:
 문제 : [sort list problem ](https://leetcode.com/problems/sort-list/description/)
 
 <br>
-
 
 처음에는 O(N)만큼 탐색하면서 vector에 옮기고 stl sort를 사용해서 해결하려고 했지만 문제에서 요구하는 space complexity를 만족하지 않기 때문에 다른 방법을 고려 하였다 그래서 merge sort를 linked list에 맞게 구현하고 해결하려 했지만 heap sort로 해도 괜찮을것 같아서 heap sort를 linked list에 맞게 변경하기로 잡고 문제를 풀려고 했다 그러기 위해서 min heap을 구현하기로 했다 부모노드와 자식 노드간의 관계식을 이용해서 그 요소의 값을 접근하기 위해 element라는 함수를 만들었다 해당 인덱스만큼 탐색해서 만족하는 노드를 return 하는 함수이다 그리고 그 요소의 값과 비교해서 min 값을 갱신한다 마지막에 min!=rootidx의 경우 swap하기 위해 linked list에 맞게 swap하는 함수도 구현을 했다       
 linked list swap코드는 singledl linked list에 언급    

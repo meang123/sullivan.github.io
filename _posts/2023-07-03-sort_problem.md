@@ -31,7 +31,7 @@ https://leetcode.com/problems/sort-array-by-increasing-frequency/
 
 [array partition](https://leetcode.com/problems/array-partition/description/)
 {: .notice--danger} 
-  
+
 
 
 [sort_color_leetcode](https://leetcode.com/explore/learn/card/sorting/694/comparison-based-sorts/4483/)
@@ -124,6 +124,104 @@ public:
 ```
 
 마지막에서 복사를 막기 위해 move를 통해 처리 하였다  
+
+
+
+-----------------
+
+
+
+
+
+## minimum absolute difference 
+
+
+
+Given an array of **distinct** integers `arr`, find all pairs of elements with the minimum absolute difference of any two elements.
+
+Return a list of pairs in ascending order(with respect to pairs), each pair `[a, b]` follows
+
+- `a, b` are from `arr`
+- `a < b`
+- `b - a` equals to the minimum absolute difference of any two elements in `arr`
+
+ 
+
+**Example 1:**
+
+```
+Input: arr = [4,2,1,3]
+Output: [[1,2],[2,3],[3,4]]
+Explanation: The minimum absolute difference is 1. List all pairs with difference equal to 1 in ascending order.
+```
+
+**Example 2:**
+
+```
+Input: arr = [1,3,6,10,15]
+Output: [[1,3]]
+```
+
+**Example 3:**
+
+```
+Input: arr = [3,8,-10,23,19,-4,-14,27]
+Output: [[-14,-10],[19,23],[23,27]]
+```
+
+ 
+
+**Constraints:**
+
+- `2 <= arr.length <= 105`
+- `-106 <= arr[i] <= 106`
+
+
+
+
+
+```c++
+class Solution {
+public:
+    vector<vector<int>> minimumAbsDifference(vector<int>& arr) 
+    {
+        int min_val = 1000001;
+        vector<vector<int>> result;
+        sort(arr.begin(),arr.end());
+
+        for(int i=0;i+1<arr.size();i++)
+        {
+            int temp = arr[i+1]-arr[i];
+            if(min_val>temp)
+            {
+                min_val = temp;
+                
+                if(!result.empty())
+                {
+                    result.clear();
+                }
+                
+
+            }
+            if(temp==min_val)
+            {
+                vector<int> temp_vec = {arr[i], arr[i+1]};
+                result.emplace_back(move(temp_vec));
+            }
+        }
+        return result;
+    }
+};
+```
+
+
+
+
+
+
+
+----------------------------------
+
 
 
 ### 수찾기 백준
